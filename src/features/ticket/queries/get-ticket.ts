@@ -1,4 +1,4 @@
-import { initialTickets } from "@/data";
+/* import { initialTickets } from "@/data";
 
 import { Ticket } from "../types";
 
@@ -9,5 +9,15 @@ export const getTicket = async (id: string): Promise<Ticket | null> => {
 
   return new Promise((resolve) => {
     resolve(maybeTicket || null);
+  });
+}; */
+
+import { prisma } from "@/lib/prisma";
+
+export const getTicket = async (id: string) => {
+  return await prisma.ticket.findUnique({
+    where: {
+      id,
+    },
   });
 };
